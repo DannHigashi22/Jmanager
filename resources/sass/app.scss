@@ -1,0 +1,95 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~admin-lte/build/scss/adminlte';
+
+$phone-min-width: 320px !default;
+$phone-max-width: 504px !default;
+// height scale for phone
+$phone-min-height: 346px !default;
+$phone-max-height: 695px !default;
+// width scale for tablet
+$tablet-min-width: 480px !default;
+$tablet-max-width: 1024px !default;
+// height scale for tablet
+$tablet-min-height: 800px !default;
+$tablet-max-height: 1440px !default;
+// Desktop Scale
+$desktop-min-height: 768px !default;
+$desktop-max-height: 1280px !default;
+
+@mixin phone(){
+  @media screen and (min-width: $phone-min-width) and (max-height: $phone-max-height){
+    @content;
+  }
+}
+// For portrait phone
+@mixin portrait-phone() {
+  @media screen and (min-width: $phone-min-width) and (max-width: $phone-max-width) and (orientation: portrait) {
+    @content;
+  }
+}
+// For landscape phone
+@mixin landscape-phone(){
+  @media screen and (min-height: $phone-min-height) and (max-height: $phone-max-height) and (orientation: landscape){
+    @content;
+  }
+}
+// For portrait tablet and landscape tablet
+@mixin tablet(){
+  @media screen and (min-width: $tablet-min-width) and (max-height: $tablet-max-height){
+    @content;
+  }
+}
+// For portrait tablet
+@mixin portrait-tablet() {
+  @media screen and (min-width: $tablet-min-width) and (max-width: $tablet-max-width) and (orientation: portrait) {
+    @content;
+  }
+}
+// For landscape tablet
+@mixin landscape-tablet(){
+  @media screen and (min-height: $tablet-min-height) and (max-height: $tablet-max-height) and (orientation: landscape){
+    @content;
+  }
+}
+// For desktop
+@mixin desktop(){
+  @media screen and (min-height: $desktop-min-height) and (max-height: $desktop-max-height){
+    @content;
+  }
+}
+
+.products-list .product-img img{
+    height: 45px;
+    width: 45px;
+}
+
+.box-chart{
+    position: relative; 
+    height:20vh; 
+    width:100%;
+    
+    @include desktop{
+        height:25vh; 
+        width:100%;
+    }  
+    
+    @include tablet{
+        height:30vh; 
+        width:100%;
+    } 
+    
+    @include phone{
+        height:35vh; 
+        width:100%;
+    }
+    
+    @include landscape-phone{
+        height:50vh; 
+        width:100%;
+    }
+
+    
+}

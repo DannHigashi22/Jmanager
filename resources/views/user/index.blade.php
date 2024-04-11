@@ -36,7 +36,9 @@
                                 <th>Email</th>
                                 <th>Rol</th>
                                 <th>Estatus</th>
+                                @if(auth()->user()->can('edit-user') && auth()->user()->can('delete-user'))
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -53,8 +55,8 @@
                                         @endempty
                                     </td>
                                     <td>{!! ($user->status == 1 ? '<span class="badge bg-success">Activo</span>' : '<span class="badge bg-danger">inactivo</span>')!!}</td>
-                                    <td>
                                         @can('edit-rol')
+                                        <td>
                                             <a class="btn btn-primary" href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a>
                                         @endcan
                                         @can('delete-rol')
@@ -63,8 +65,8 @@
                                                 @method('DELETE')
                                                 <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
+                                        </td>    
                                         @endcan
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

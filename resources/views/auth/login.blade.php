@@ -13,23 +13,28 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            color: white !important; 
+            background-color: rgb(26, 32, 44) !important; 
+        }
+    </style>
 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo row ">
-        <div class="col-12">
-            <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
-        </div>
-        <div class="col-12">
-            <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
-        </div>
-    </div>
-    <!-- /.login-logo -->
-
     <!-- /.login-box-body -->
     <div class="card">
-        <div class="card-body login-card-body">
+        <div class="login-logo row pt-3">
+            <div class="col-12">
+                <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
+            </div>
+            <div class="col-12">
+                <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+            </div>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card-body login-card-body pt-1">
             <p class="login-box-msg">Inicia sesión para comenzar</p>
 
             <form method="post" action="{{ url('/login') }}">
@@ -66,14 +71,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-7">
+                    <div class="col-6">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
                             <label for="remember">Recordar</label>
                         </div>
                     </div>
 
-                    <div class="col-5">
+                    <div class="col-6">
                         <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                     </div>
 

@@ -14,10 +14,11 @@ class AuditController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:show-audit|create-audit|edit-audit|delete-audit',['only'=>['index']]);
+        $this->middleware('permission:show-audit|create-audit|edit-audit|delete-audit|importShpr-audit',['only'=>['index']]);
         $this->middleware('permission:create-audit',['only'=>['create','store']]);
         $this->middleware('permission:edit-audit',['only'=>['edit','update']]);
         $this->middleware('permission:edelete-audit',['only'=>['destroy']]);
+        $this->middleware('permission:importShpr-audit',['only'=>['importShoppers']]);
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class AuditController extends Controller
      */
     public function index()
     {
-        $audits=Audit::paginate(10);
+        $audits=Audit::orderBy('created_at','desc')->paginate(10);
         return view('audit.index',compact('audits'));
     }
 
@@ -125,5 +126,15 @@ class AuditController extends Controller
         
         $audit->delete();
         return redirect()->route('audits.index');
+    }
+
+    public function importShoppers(Request $request){
+        /*$validate=$this->validate($request,[
+            'excel'=>['required','mimes:xlsx','max:2048']
+        ]);
+
+            $excel=$request->file('excel');
+            Excel::import(New AuditImport,$excel);
+            return redirect('/');*/
     }
 }

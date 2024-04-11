@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
@@ -80,12 +80,9 @@
         reserved.
     </footer>
 </div>
-
-
-
-<script src="{{ mix('js/app.js') }}" defer></script>
-
 @yield('third_party_scripts')
+
+<script src="{{ mix('js/app.js') }}"></script>
 
 @stack('page_scripts')
 </body>

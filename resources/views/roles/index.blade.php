@@ -31,7 +31,9 @@
                             <tr>
                                 <th>Rol</th>
                                 <th>Creado</th>
+                                @if(auth()->user()->can('edit-audit') && auth()->user()->can('delete-audit'))
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +41,8 @@
                                 <tr>
                                     <td><strong>{{$rol->name}}</strong></td>
                                     <td> {{$rol->created_at}}</td>
-                                    <td>
                                         @can('edit-rol')
+                                        <td>
                                             <a class="btn btn-primary " href="{{route('roles.edit',$rol->id)}}"><i class="fas fa-edit"></i></a>
                                         @endcan
                                         @can('delete-rol')
@@ -49,8 +51,8 @@
                                                 @method('DELETE')
                                                 <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
+                                        </td>    
                                         @endcan
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

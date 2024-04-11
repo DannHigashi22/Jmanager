@@ -59,6 +59,7 @@ class UserController extends Controller
         ]);
 
         $input=$request->all();
+        $input=Arr::add($input,'status',1);
         $input['password']=Hash::make($input['password']);
         
         $user=User::create($input);

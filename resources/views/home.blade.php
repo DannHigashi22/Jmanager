@@ -1,7 +1,20 @@
 @extends('layouts.app')
 
+@section('third_party_stylesheets')
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"  />
+@endsection
+
 @section('third_party_scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
+    integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
 @endsection
 
 @section('content')
@@ -28,16 +41,16 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                    <span class="info-box-icon bg-blue elevation-1"><i class="fas fa-calendar-day"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Auditorias hoy</span>
-                        <span class="info-box-number">{{$auditsToday}}</span>
+                        <span class="info-box-text">Auditorias</span>
+                        <span class="info-box-number">{{$auditsDay}}</span>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                    <span class="info-box-icon bg-info elevation-1"><i class="far fa-calendar-alt"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Auditorias del mes</span>
                         <span class="info-box-number">{{$auditsMonth}}</span>
@@ -47,9 +60,9 @@
             <div class="clearfix hidden-md-up"></div>
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-shopping-cart"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Auditorias</span>
+                        <span class="info-box-text">Auditorias Totales</span>
                         <span class="info-box-number">{{$audits}}</span>
                     </div>
                 </div>
@@ -59,15 +72,67 @@
                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Usuarios / Miembros</span>
-                        <span class="info-box-number">{{$users}}</span>
+                        <span class="info-box-number">{{$users->count()}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <!--info boxes end -->
 
-        <!--charts error-->
+        <!--charts-->
         <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" method="">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-group mb-1">
+                                        <label>Fecha:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-calendar-alt"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control form-control-solid" placeholder="Todas las fechas" id="filter-date" name="dateRange" autocomplete="off" value="{{request('dateRange')? request('dateRange'):null}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(auth()->user()->getRoleNames()[0] == 'Super Administrador' |  auth()->user()->getRoleNames()[0] == 'Administrador' )
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group mb-1">
+                                        <label>Colaborador:</label>
+                                        <select class="form-control" name="user">
+                                            <option value="">Selecione</option>
+                                            @foreach($users as $user)
+                                            <option value="{{$user->email}}" >{{$user->name.' '.$user->surname}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                @endif
+                                <div class="col-6 col-md-3">
+                                    <div class="form-group mb-1">
+                                        <label>Tipo Entrega</label>
+                                        <select class="form-control" name="type">
+                                            <option value="">Selecione</option>
+                                            <option value="Click auto"  {{Request::get('type') == 'Click auto' ? 'selected':''}} >Click Auto</option>
+                                            <option value="Despacho" {{Request::get('type') == 'Despacho' ? 'selected':''}}>Despacho</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-2 d-flex justify-content-center align-items-end">
+                                    <div class="form-group mb-1 ">
+                                        <button class="btn btn-primary px-3"><i class="fas fa-filter"></i> Filtar</button>
+                                        <a class="btn btn-secondary px-3" id="reset-filter"><i class="fas fa-redo-alt"></i> Limpiar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
@@ -106,6 +171,7 @@
                                         </div>
                                     </div>
                                     <canvas id="errorChart"></canvas>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -115,15 +181,13 @@
                 </div>
             </div>
         </div>
-        <!--charts  error end -->
-
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card card-cyan">
                     <div class="card-header">
                         <h3 class="card-title">Auditorias por Usuario</h3>
                         <div class="card-tools">
-                            <span class="badge badge-danger">Dia de hoy</span>
+                            <span class="badge badge-danger">Fecha</span>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -133,7 +197,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="chart box-chart" >
+                        <div class="chart box-chart">
                             <div class="chartjs-size-monitor">
                                 <div class="chartjs-size-monitor-expand">
                                     <div class=""></div>
@@ -142,7 +206,8 @@
                                     <div class=""></div>
                                 </div>
                             </div>
-                            <canvas id="auditUserChart" ></canvas>
+                            <canvas id="auditUserChart"></canvas>
+                           
                         </div>
                     </div>
                     <div class="card-footer text-center">
@@ -164,17 +229,18 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                                <div class="chart box-chart">
-                                    <div class="chartjs-size-monitor">
-                                        <div class="chartjs-size-monitor-expand">
-                                            <div class=""></div>
-                                        </div>
-                                        <div class="chartjs-size-monitor-shrink">
-                                            <div class=""></div>
-                                        </div>
+                            <div class="chart box-chart">
+                                <div class="chartjs-size-monitor">
+                                    <div class="chartjs-size-monitor-expand">
+                                        <div class=""></div>
                                     </div>
-                                    <canvas id="typeChart" ></canvas>
+                                    <div class="chartjs-size-monitor-shrink">
+                                        <div class=""></div>
+                                    </div>
                                 </div>
+                                <canvas id="typeChart"></canvas>
+                                
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer ">
@@ -182,6 +248,7 @@
                 </div>
             </div>
         </div>
+        <!--charts  error end -->
 
         <!--lastest-->
         <div class="row">
@@ -203,11 +270,13 @@
                             @foreach ($lastAudits as $audit)
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="https://cdn-icons-png.freepik.com/512/4308/4308078.png?ga=GA1.1.2115270469.1711143531&" alt="Product Image" class="img-size-50">
+                                    <img src="https://cdn-icons-png.freepik.com/512/4308/4308078.png?ga=GA1.1.2115270469.1711143531&"
+                                        alt="Product Image" class="img-size-50">
                                 </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">{{$audit->order}}
-                                        <span class="badge badge-info float-right">{{($audit->user->name)}} {{$audit->user->surname}}</span></a>
+                                        <span class="badge badge-info float-right">{{($audit->user->name)}}
+                                            {{$audit->user->surname}}</span></a>
                                     <span class="product-description">{{$audit->description}}</span>
                                 </div>
                             </li>
@@ -237,21 +306,23 @@
                             @foreach ($lastUsers as $user)
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="https://cdn-icons-png.freepik.com/512/8647/8647311.png?ga=GA1.1.2115270469.1711143531&" alt="Product Image" class="img-size-50">
+                                    <img src="https://cdn-icons-png.freepik.com/512/8647/8647311.png?ga=GA1.1.2115270469.1711143531&"
+                                        alt="Product Image" class="img-size-50">
                                 </div>
                                 <div class="product-info ">
-                                    <a href="javascript:void(0)" class="product-title">{{($user->name)}} {{$user->surname}}
+                                    <a href="javascript:void(0)" class="product-title">{{($user->name)}}
+                                        {{$user->surname}}
                                         @empty(!$user->getRoleNames())
-                                            @foreach ($user->getRoleNames() as $roleName)
-                                            <span class="badge badge-warning float-right">{{$roleName}}</span></a>
-                                            @endforeach
-                                        @endempty
-                                        
+                                        @foreach ($user->getRoleNames() as $roleName)
+                                        <span class="badge badge-warning float-right">{{$roleName}}</span></a>
+                                    @endforeach
+                                    @endempty
+
                                     <span class="product-description">{{($user->created_at)}}</span>
                                 </div>
                             </li>
                             @endforeach
-                           
+
                         </ul>
                     </div>
                     <div class="card-footer text-center">
@@ -277,11 +348,13 @@
                             @foreach ($lastErrors as $error)
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="https://cdn-icons-png.freepik.com/512/1183/1183866.png?ga=GA1.1.2115270469.1711143531&" alt="Product Image" class="img-size-50">
+                                    <img src="https://cdn-icons-png.freepik.com/512/1183/1183866.png?ga=GA1.1.2115270469.1711143531&"
+                                        alt="Product Image" class="img-size-50">
                                 </div>
                                 <div class="product-info">
                                     <a href="javascript:void(0)" class="product-title">{{$error->type}}
-                                        <span class="badge badge-warning float-right">{{$error->audits->count()}} Auditorias</span></a>
+                                        <span class="badge badge-warning float-right">{{$error->audits->count()}}
+                                            Auditorias</span></a>
                                     <span class="product-description">{{$error->created_at}}</span>
                                 </div>
                             </li>

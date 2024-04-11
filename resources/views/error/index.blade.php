@@ -33,7 +33,9 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Creado</th>
+                                @if(auth()->user()->can('edit-error') | auth()->user()->can('delete-error'))
                                 <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -41,18 +43,19 @@
                                 <tr>
                                     <td><strong>{{$error->type}}</strong></td>
                                     <td>{{$error->created_at}}</td>
+                                    @can('edit-error')
                                     <td>
-                                        @can('edit-error')
                                             <a class="btn btn-primary" href="{{route('errors.edit',$error->id)}}"><i class="fas fa-user-edit"></i></a>
-                                        @endcan
-                                        @can('delete-error')
+                                    @endcan
+                                    @can('delete-error')
                                             <form action="{{route('errors.destroy',$error->id)}}" method="post" class="d-inline" >
                                                 @csrf
                                                 @method('DELETE')
                                                 <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
-                                        @endcan
-                                    </td>
+                                    </td>        
+                                    @endcan
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

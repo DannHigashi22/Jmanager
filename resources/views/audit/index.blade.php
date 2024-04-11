@@ -32,11 +32,12 @@
                         <thead>
                             <tr>
                                 <th>Pedido</th>
-                                <th>shopper</th>
                                 <th>Tipo</th>
+                                <th>Shopper</th>
+                                <th>Error</th>
                                 <th>Auditor</th>
                                 <th>Creado</th>
-                                @if(auth()->user()->can('edit-audit') && auth()->user()->can('delete-audit'))
+                                @if(auth()->user()->can('edit-audit') | auth()->user()->can('delete-audit'))
                                 <th>Acciones</th>
                                 @endif
                             </tr>
@@ -45,7 +46,8 @@
                             @foreach ($audits as $audit)
                                 <tr>
                                     <td><strong>{{$audit->order}}</strong></td>
-                                    <td>{{$audit->shopper}}</td>
+                                    <td>{{$audit->type}}</td>
+                                    <td>{!! $audit->shopper ? $audit->shopper: '<small class="badge badge-info">Sin Datos</small>' !!}</td>
                                     <td>
                                         @foreach ($audit->errors as $error)
                                             <small class="badge badge-warning">{{$error->type}}</small><br>
@@ -69,7 +71,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="pagination justify-center">
+                    <div class="pagination d-flex justify-content-center">
                         {!! $audits->links() !!}
                     </div>
                     </div>

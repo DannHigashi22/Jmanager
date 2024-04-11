@@ -13,21 +13,26 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            color: white !important; 
+            background-color: rgb(26, 32, 44) !important; 
+        }
+    </style>
 
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
-    <div class="register-logo row">
-        <div class="col-12">
-            <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
-        </div>
-        <div class="col-12">
-            <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
-        </div>
-    </div>
-
     <div class="card">
-        <div class="card-body register-card-body">
+        <div class="register-logo row pt-3">
+            <div class="col-12">
+                <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
+            </div>
+            <div class="col-12">
+                <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+            </div>
+        </div>
+        <div class="card-body register-card-body pt-0">
             <p class="login-box-msg">Crea una cuenta</p>
 
             <form method="post" action="{{ route('register') }}">
@@ -95,7 +100,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-8 pr-0">
                         <div class="icheck-primary">
                             <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                             <label for="agreeTerms">
@@ -104,7 +109,7 @@
                         </div>
                     </div>
                     <!-- /.col -->
-                    <div class="col-4">
+                    <div class="col-4 pl-0">
                         <button type="submit" class="btn btn-primary btn-block">Registrar</button>
                     </div>
                     <!-- /.col -->

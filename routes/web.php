@@ -26,7 +26,8 @@ use App\Http\Controllers\ErrorController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
+
 
 Auth::routes();
 

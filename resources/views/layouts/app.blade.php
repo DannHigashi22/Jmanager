@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
-
+    @notifyCss
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
     @yield('third_party_stylesheets')
-
     @stack('page_css')
+    
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -84,6 +84,10 @@
 
 <script src="{{ mix('js/app.js') }}"></script>
 
+<x:notify-messages />
+@notifyJs
+
+@yield('p_scripts')
 @stack('page_scripts')
 </body>
 </html>

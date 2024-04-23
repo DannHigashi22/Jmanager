@@ -7,14 +7,9 @@
 @section('third_party_scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
     integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-
 @endsection
 
 @section('content')
@@ -106,7 +101,7 @@
                                         <select class="form-control" name="user">
                                             <option value="">Selecione</option>
                                             @foreach($users as $user)
-                                            <option value="{{$user->email}}" >{{$user->name.' '.$user->surname}}</option>
+                                            <option value="{{$user->email}}" {{Request::get('user') == $user->email ? 'selected':''}} >{{$user->name.' '.$user->surname}}</option>
                                             @endforeach
                                         </select>
                                     </div>

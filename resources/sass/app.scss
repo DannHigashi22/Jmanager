@@ -73,6 +73,18 @@ $desktop-max-height: 1280px !default;
   width: 45px;
 }
 
+.main-header {
+  border-bottom: 1px solid #dee2e6;
+  z-index: auto;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header > img {
+  display: inline;
+}
+.navbar-nav > .user-menu .user-image {
+  display: inline;
+}
+
 .box-chart {
   position: relative;
   height: 20vh;

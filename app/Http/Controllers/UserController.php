@@ -64,7 +64,7 @@ class UserController extends Controller
         
         $user=User::create($input);
         $user->assignRole($request->input('roles'));
-
+        notify()->success('Usuario creado correctamente⚡️','Creado');
         return redirect()->route('users.index');
     }
 
@@ -90,7 +90,6 @@ class UserController extends Controller
         $user=User::findOrFail($id);
         $roles=Role::pluck('name','name');
         $userRole=$user->roles->pluck('name','name')->all();
-
         return view('user.edit',compact('user','roles','userRole'));
     }
 
@@ -122,6 +121,7 @@ class UserController extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
         $user->assignRole($request->input('roles'));
+        notify()->success('Usuario actualizado correctamente ⚡️','Editar');
         return redirect()->route('users.index');
     }
 
@@ -134,6 +134,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        return redirect()->route('user.index');
+        notify()->success('Usuario eliminado correctamente 🗑','Eliminacion');
+        return redirect()->route('users.index');
     }
 }

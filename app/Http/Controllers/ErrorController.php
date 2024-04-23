@@ -49,8 +49,8 @@ class ErrorController extends Controller
         $error=New Error();
         $error->type=$request->input('type');
         $error->save();
-
-        return redirect()->route('errors.index');
+        notify()->success('Auditoria ingresada correctamente, gracias por su tiempo ⚡️','Creado');
+        return redirect()->route('errors.index')->with(['type'=>'success','message'=>'Datos creado correctamente']);
     }
 
     /**
@@ -91,6 +91,7 @@ class ErrorController extends Controller
         $error=Error::findOrFail($id);
         $error->type=$request->input('type');
         $error->update();
+        notify()->success('Datos actualizados correctamente ⚡️','Editar');
         return redirect()->route('errors.index');
     }
 
@@ -104,6 +105,7 @@ class ErrorController extends Controller
     {
         $error=Error::findOrFail($id);
         $error->delete();
+        notify()->success('Datos eliminado correctamente 🗑','Eliminacion');
         return redirect()->route('errors.index');
     }
 }

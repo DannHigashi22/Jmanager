@@ -23,7 +23,7 @@ class TablePermisions extends Seeder
         //permisos
         $permisssions=[
             //table audits
-            'show-audit','create-audit','edit-audit','delete-audit',
+            'show-audit','create-audit','edit-audit','delete-audit','importShpr-audit','exportShpr-audit',
             //table errors
             'show-error','create-error','edit-error','delete-error',
             //table roles

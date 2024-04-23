@@ -168,11 +168,23 @@ $(function () {
     $(this).val('');
   });
 
-  //resetear filtros
+  //resetear filtros home 
   $('#reset-filter').on("click", function () {
     $('input[name="dateRange"]').val('');
     $('select[name=type]').val('');
     window.location.href = '/home';
+  });
+
+  //resetear filtros audits
+  $('#reset-filter-audits').on("click", function () {
+    $('input[name="dateRange"]').val('');
+    $('select[name=type]').val('');
+    window.location.href = '/audits';
+  });
+  $('#exportAudits').on("click", function () {
+    $('#auditsForm').attr('action', 'audits/export');
+    $('#auditsForm').submit();
+    $('#auditsForm').attr('action', '');
   });
 });
 

@@ -55,6 +55,7 @@ class RolController extends Controller
         ]);
         $role=Role::create(['name'=>$request->input('name')]);
         $role->syncPermissions($request->input('permission'));
+        notify()->success('Datos creado correctamente⚡️','Creado');
         return redirect()->route('roles.index');
     }
 
@@ -103,6 +104,7 @@ class RolController extends Controller
         $role->name=$request->input('name');
         $role->save();
         $role->syncPermissions($request->input('permission'));
+        notify()->success('Datos actualizados correctamente ⚡️','Editar');
         return redirect()->route('roles.index');
     }
 
@@ -115,6 +117,7 @@ class RolController extends Controller
     public function destroy($id)
     {
         Db::table('roles')->where('id',$id)->delete();
+        notify()->success('Datos eliminado correctamente 🗑','Eliminacion');
         return redirect()->route('roles.index');
     }
 }

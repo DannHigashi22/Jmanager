@@ -31,6 +31,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+//verify
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
@@ -47,11 +49,14 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('resent', 'Link de verificacion enviado!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+Route::get('audits/export',[AuditController::class,'exportAudits'])->name('exportAudits');
 Route::group(['middleware' => ['auth', 'verified']], function () {
     //dashboard
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('roles', RolController::class);
     Route::resource('users', UserController::class);
     Route::resource('audits', AuditController::class);
+    Route::post('audits/import',[AuditController::class,'importShoppers'])->name('importShoppers');
+    
     Route::resource('errors', ErrorController::class);
 });

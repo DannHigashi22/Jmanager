@@ -74,7 +74,6 @@ class HomeController extends Controller
             }
         })->pluck('audits_count','type')->all();
 
-        //dd($chartErrors);
         //chart audits by user
         $chartUsers=User::selectRaw("CONCAT(name,' ',surname) as names")
         ->when($request->input('dateRange') != null | $request->input('type') != null | $user !== null, function ($q) use ($start,$end,$request,$user){

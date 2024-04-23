@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,5 +39,35 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         smilify('Bienvenido! 🔥 ', 'sesion iniciada con exito');
+    }
+
+
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password') + [
+            'status' => 0
+        ];
+    }
+    protected function attemptLogin(Request $request)
+    {
+        return $this->guard()->attemptWhen(
+            $this->credentials($request),
+            fn ($user) => ! $user->status,
+            $request->filled('remember')
+        );
+    }
+
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $user = $this->guard()->getLastAttempted();
+
+        throw ValidationException::withMessages([
+            $this->username() => [
+                $user && $this->guard()->getProvider()->validateCredentials($user, $this->credentials($request))
+                    ? 'Usuario no activado contactar con administrador'
+                    : trans('auth.failed')
+            ]
+        ]);
     }
 }

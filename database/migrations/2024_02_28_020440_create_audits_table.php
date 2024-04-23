@@ -16,7 +16,7 @@ class CreateAuditsTable extends Migration
         Schema::create('audits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('order')->unique();
+            $table->string('order');
             $table->string('type');
             $table->string('shopper')->nullable();
             $table->string('description');

@@ -13,18 +13,28 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            color: white !important; 
+            background-color: rgb(26, 32, 44) !important; 
+        }
+    </style>
 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
-    </div>
-
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+            <div class="login-logo row pt-3">
+                <div class="col-12">
+                    <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
+                </div>
+                <div class="col-12">
+                    <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+                </div>
+            </div>
+            <p class="login-box-msg">¿Olvidaste tu contraseña? Aquí puede recuperar fácilmente una nueva contraseña.</p>
 
             @if (session('status'))
                 <div class="alert alert-success">
@@ -50,17 +60,17 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Send Password Reset Link</button>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar link de restablecimiento</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="{{ route("login") }}">Login</a>
+                <a href="{{ route("login") }}">Iniciar Sesion</a>
             </p>
             <p class="mb-0">
-                <a href="{{ route("register") }}" class="text-center">Register a new membership</a>
+                <a href="{{ route("register") }}" class="text-center">Registrar</a>
             </p>
         </div>
         <!-- /.login-card-body -->

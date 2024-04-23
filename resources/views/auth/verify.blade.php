@@ -13,6 +13,12 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            
+            background-color: rgb(26, 32, 44) !important; 
+        }
+    </style>
 
 </head>
 <body class="login-page">
@@ -20,10 +26,15 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7" style="margin-top: 2%">
-                    <div class="login-logo">
-                        <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
-                    </div>
                     <div class="card">
+                        <div class="login-logo row pt-3">
+                            <div class="col-12">
+                                <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
+                            </div>
+                            <div class="col-12">
+                                <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+                            </div>
+                        </div>
                         <div class="card-body ">
                             <div class="box">
                                 <h3 class="box-title" style="padding: 2%">Confirmacion de correo Electronico</h3>

@@ -42,7 +42,7 @@
                     @auth
                     <a href="{{ url('/home') }}" class="btn btn-primary">Incio</a>
                     @else
-                    <a href="{{ route('login') }}" class="btn btn-outline-primary">Login</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary">Iniciar Sesion</a>
         
                     @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="btn btn-outline-primary ">Crear Cuenta</a>

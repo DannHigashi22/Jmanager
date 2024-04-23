@@ -13,17 +13,27 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            color: white !important; 
+            background-color: rgb(26, 32, 44) !important; 
+        }
+    </style>
 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
-    </div>
-
     <div class="card">
+        <div class="login-logo row pt-3">
+            <div class="col-12">
+                <img src="https://cdn-icons-png.freepik.com/512/8324/8324499.png?ga=GA1.1.2115270469.1711143531" alt="AdminLTE Logo" class="w-25 ">
+            </div>
+            <div class="col-12">
+                <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+            </div>
+        </div>
         <div class="card-body login-card-body">
-            <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
+            <p class="login-box-msg">Estás a sólo un paso de tu nueva contraseña, recupera tu contraseña ahora.</p>
 
             <form action="{{ route('password.update') }}" method="POST">
                 @csrf
@@ -53,7 +63,7 @@
                     <input type="password"
                            name="password"
                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                           placeholder="Password">
+                           placeholder="Contraseña">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-lock"></span></div>
                     </div>
@@ -66,7 +76,7 @@
                     <input type="password"
                            name="password_confirmation"
                            class="form-control"
-                           placeholder="Confirm Password">
+                           placeholder="Confirmar contraseña">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-lock"></span></div>
                     </div>
@@ -77,14 +87,14 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                        <button type="submit" class="btn btn-primary btn-block">Restablecer Contraseña</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('login') }}">Iniciar sesion</a>
             </p>
         </div>
         <!-- /.login-card-body -->

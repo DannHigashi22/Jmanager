@@ -81,7 +81,7 @@
                     <div class="card-body">
                         <form action="" method="">
                             <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group mb-1">
                                         <label>Fecha:</label>
                                         <div class="input-group">
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 @if(auth()->user()->getRoleNames()[0] == 'Super Administrador' |  auth()->user()->getRoleNames()[0] == 'Administrador' )
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-3 col-lg-3">
                                     <div class="form-group mb-1">
                                         <label>Colaborador:</label>
                                         <select class="form-control" name="user">
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="col-6 col-md-3">
+                                <div class="col-6 col-md-3 col-lg-2">
                                     <div class="form-group mb-1">
                                         <label>Tipo Entrega</label>
                                         <select class="form-control" name="type">
@@ -117,7 +117,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-2 d-flex justify-content-center align-items-end">
+                                <div class="col-12 col-md-12 col-lg-3 d-flex justify-content-center align-items-end">
                                     <div class="form-group mb-1 ">
                                         <button class="btn btn-primary px-3"><i class="fas fa-filter"></i> Filtar</button>
                                         <a class="btn btn-secondary px-3" id="reset-filter"><i class="fas fa-redo-alt"></i> Limpiar</a>

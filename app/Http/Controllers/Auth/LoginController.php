@@ -41,33 +41,14 @@ class LoginController extends Controller
         smilify('Bienvenido! 🔥 ', 'sesion iniciada con exito');
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->status !== 1 && $user->email_verified_at !== null ) {
+            \Auth::logout();
 
-    protected function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'password') + [
-            'status' => 0
-        ];
-    }
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attemptWhen(
-            $this->credentials($request),
-            fn ($user) => ! $user->status,
-            $request->filled('remember')
-        );
+            return redirect(route('login'))->withErrors(['email' => 'Ususario no activado, contactar al administrador']);
+        }
     }
 
-
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        $user = $this->guard()->getLastAttempted();
-
-        throw ValidationException::withMessages([
-            $this->username() => [
-                $user && $this->guard()->getProvider()->validateCredentials($user, $this->credentials($request))
-                    ? 'Usuario no activado contactar con administrador'
-                    : trans('auth.failed')
-            ]
-        ]);
-    }
+   
 }

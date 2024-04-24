@@ -11,7 +11,6 @@ $(function () {
     $.ajax({
       url:
       decodeURIComponent(window.location.href),
-        //'http://192.168.100.11:8000/home',
       type: "GET",
       async: false,
       success: function (data) {
@@ -23,8 +22,6 @@ $(function () {
         console.log(`Error ${error}`);
       }
     });
-
-    console.log(analytics);
 
     Chart.register({
       id: 'noData',

@@ -36,7 +36,6 @@
         <!-- /.login-logo -->
         <div class="card-body login-card-body pt-1">
             <p class="login-box-msg">Inicia sesión para comenzar</p>
-
             <form method="post" action="{{ url('/login') }}">
                 @csrf
 

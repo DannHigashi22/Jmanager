@@ -13,6 +13,7 @@
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
     <!-- Styles -->
+    @notifyCss
     <style>
         body {
             font-family: 'Nunito';
@@ -55,6 +56,10 @@
                 <iframe class="embed-responsive-item" src='https://my.spline.design/mymanageriphone14prosplash-be8a61112dceb2caba44678934b08eed/' frameborder='0' width='100%' height='100%'></iframe>
             </div>
         </div>
-      
+    
+
+
+        <x:notify-messages />
+        @notifyJs        
 </body>
 </html>

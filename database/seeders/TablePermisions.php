@@ -38,7 +38,7 @@ class TablePermisions extends Seeder
 
         //errores y tipos
         $errors_type=[
-            'Faltante encontrado','Atraso','Sin comentarios','Error de patente','Productos sin hielo','Mal embolsado','Facturacion','Carro Olvidado','Mal atencion'
+            'Faltante encontrado','Atraso','Error de patente','Productos sin hielo','Mal embolsado','Facturacion','Carro Olvidado','Mal gestion'
         ];
         foreach ($errors_type as $error) {
             Error::create(['type'=>$error]);

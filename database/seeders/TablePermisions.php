@@ -3,12 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Error;
-use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 //spatie
 use Spatie\Permission\Models\Permission;
-
+use Spatie\Permission\Models\Role;
 
 class TablePermisions extends Seeder
 {

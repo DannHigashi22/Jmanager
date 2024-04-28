@@ -84,7 +84,7 @@
 
 <script src="{{ mix('js/app.js') }}"></script>
 
-<x:notify-messages />
+@include('notify::components.notify')
 @notifyJs
 
 @yield('p_scripts')

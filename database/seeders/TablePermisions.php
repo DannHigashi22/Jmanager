@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Error;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 //spatie
@@ -49,7 +50,7 @@ class TablePermisions extends Seeder
             'Super Administrador','Administrador', 'Auditor'
         ];
         foreach ($roles_type as $rol) {
-            Error::create(['name'=>$rol]);
+            Role::create(['name'=>$rol]);
         }
     }
 }

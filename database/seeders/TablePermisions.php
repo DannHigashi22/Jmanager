@@ -43,5 +43,13 @@ class TablePermisions extends Seeder
         foreach ($errors_type as $error) {
             Error::create(['type'=>$error]);
         }
+
+        //Roles Basicos
+        $roles_type=[
+            'Super Administrador','Administrador', 'Auditor'
+        ];
+        foreach ($roles_type as $rol) {
+            Error::create(['name'=>$rol]);
+        }
     }
 }

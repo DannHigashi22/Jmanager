@@ -167,7 +167,7 @@ class AuditController extends Controller
 
     public function importShoppers(Request $request){
         $validate=$this->validate($request,[
-            'excel'=>['required','mimes:csv,xlsx','max:2048']
+            'excel'=>['required','mimes:csv,xlsx,txt','max:2048']
         ]);
         $excel=$request->file('excel');
         try {

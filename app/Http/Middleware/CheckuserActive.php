@@ -20,6 +20,7 @@ class CheckuserActive
     { 
         return $next($request); 
     } 
+        notify()->error('Usuario desactivado, consulta con administrador ','App');
         return redirect(route('login'))->withErrors(['email' => 'Ususario no activado, contactar al administrador']);
     }
 }

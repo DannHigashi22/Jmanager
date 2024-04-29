@@ -37,7 +37,7 @@
                     <div class="card-body" style="display: none;">
                         <form action="" method="" id="auditsForm">
                             <div class="row">
-                                <div class="col-12 col-md-6 col-lg-4">
+                                <div class="col-12 col-md">
                                     <div class="form-group mb-1">
                                         <label>Fecha:</label>
                                         <div class="input-group">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 @if(auth()->user()->getRoleNames()[0] == 'Super Administrador' |  auth()->user()->getRoleNames()[0] == 'Administrador' )
-                                <div class="col-6 col-md-3 col-lg-3">
+                                <div class="col col-md">
                                     <div class="form-group mb-1">
                                         <label>Colaborador:</label>
                                         <select class="form-control" name="user">
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="col-6 col-md-3 col-lg-2">
+                                <div class="col col-md">
                                     <div class="form-group mb-1">
                                         <label>Tipo Entrega</label>
                                         <select class="form-control" name="type">

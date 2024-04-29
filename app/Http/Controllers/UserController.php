@@ -107,7 +107,8 @@ class UserController extends Controller
             'surname'=>['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', "unique:users,email,$id"],
             'password' => ['nullable','string', 'min:8', 'same:password_confirmation'],
-            'roles'=>['required']
+            'roles'=>['required','exists:roles,name'],
+            'status'=>['required','boolean']
         ]);
         
         $input=$request->all();

@@ -12,6 +12,7 @@
           integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
           crossorigin="anonymous"/>
 
+        @notifyCss
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <style>
         body {
@@ -98,6 +99,11 @@
 <!-- /.login-box -->
 
 <script src="{{ mix('js/app.js') }}" defer></script>
+
+@include('notify::components.notify')
+
+<x:notify-messages />
+@notifyJs
 
 </body>
 </html>

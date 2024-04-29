@@ -39,8 +39,8 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-
     \Auth::logout();
+
     smilify('Bienvenido! 🔥 ', 'Email verificado');
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
@@ -51,8 +51,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('resent', 'Link de verificacion enviado!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::get('audits/export',[AuditController::class,'exportAudits'])->name('exportAudits');
-Route::group(['middleware' => ['auth', 'verified']], function () {
+Route::get('audits/export',[AuditController::class,'exportAudits'])->name('exportAudits')->middleware('auth','verified','checkuseractive');
+Route::group(['middleware' => ['auth', 'verified','checkuseractive']], function () {
     //dashboard
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('roles', RolController::class);

@@ -16,6 +16,7 @@ class CreateAuditErrorTable extends Migration
         Schema::create('audit_error', function (Blueprint $table) {
             $table->unsignedBigInteger('error_id');
             $table->unsignedBigInteger('audit_id');
+            $table->timestamps();
 
             $table->foreign('error_id')->references('id')->on('errors');
             $table->foreign('audit_id')->references('id')->on('audits');

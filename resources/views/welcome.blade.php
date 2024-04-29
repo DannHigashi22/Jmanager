@@ -59,8 +59,8 @@
         </div>
     
 
+        @include('notify::components.notify')
 
-        <x:notify-messages />
-        @notifyJs        
+        @notifyJs 
 </body>
 </html>

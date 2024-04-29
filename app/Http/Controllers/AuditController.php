@@ -210,7 +210,7 @@ class AuditController extends Controller
               return $q->orderBy('created_at','desc');
           })->get();//->paginate(10);
 
-          notify()->info('Archivo generado, momento para su descarga');
+          //notify()->info('Archivo generado, momento para su descarga');
         return Excel::download(new AuditExport($audits), 'audits.xlsx');
     }
 }

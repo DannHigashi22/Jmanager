@@ -41,14 +41,14 @@ class LoginController extends Controller
         
     }
 
-    protected function authenticated(Request $request, $user)
+    /*protected function authenticated(Request $request, $user)
     {
         if ($user->status !== 1 && $user->email_verified_at !== null ) {
             \Auth::logout();
             
             return redirect(route('login'))->withErrors(['email' => 'Ususario no activado, contactar al administrador']);
         }
-    }
+    }*/
 
    
 }

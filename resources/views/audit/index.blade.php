@@ -192,7 +192,7 @@
     </div>
 </div>
 @endsection
-@if($errors->has('excel') | session('failures'))
+@if($errors->has('excel') | (bool)session('failures'))
     @section('p_scripts')
         <script>
        $(document).ready(function(){

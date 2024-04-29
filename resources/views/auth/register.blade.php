@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ config('app.name') }} | Registro</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.freepik.com/512/5608/5608597.png?ga=GA1.1.2115270469.1711143531">
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">

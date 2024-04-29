@@ -184,7 +184,6 @@ class AuditController extends Controller
     }
 
     public function exportAudits(Request $request){
-        //dd($request);
           $start= null;
           $end= null;
           $user=null;
@@ -209,8 +208,6 @@ class AuditController extends Controller
           },function($q){
               return $q->orderBy('created_at','desc');
           })->get();//->paginate(10);
-
-          //notify()->info('Archivo generado, momento para su descarga');
         return Excel::download(new AuditExport($audits), 'audits.xlsx');
     }
 }

@@ -43,12 +43,13 @@
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name .' '.Auth::user()->surname}}
+                            <small>{{Auth::user()->getRoleNames()[0]}}</small>
                             <small>Miembro desde {{ Auth::user()->created_at->format('M. Y') }}</small>
                         </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                        <!--<a href="#" class="btn btn-default btn-flat">Perfil</a>-->
                         <a href="#" class="btn btn-default btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                            <i class="fas fa-sign-out-alt"></i> Salir

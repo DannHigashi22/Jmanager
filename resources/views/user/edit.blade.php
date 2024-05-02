@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="content-header">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row mb-2">
             <div class="col-sm-6">
             <h1>Editar Usuarios</h1>
@@ -17,7 +17,7 @@
         </div>
     </div>
 </section>
-    <div class="container-xl">        
+    <div class="container">        
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary">

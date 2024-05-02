@@ -126,14 +126,10 @@
                                     <td>{{date_format($audit->created_at,'m/d/Y')}}</td>
                                     @can('edit-audit')
                                     <td>
-                                            <a class="btn btn-primary" href="{{route('audits.edit',$audit->id)}}"><i class="fas fa-user-edit"></i></a>
+                                        <a class="btn btn-primary" href="{{route('audits.edit',$audit->id)}}"><i class="fas fa-user-edit"></i></a>
                                     @endcan
                                     @can('delete-audit')
-                                            <form action="{{route('audits.destroy',$audit->id)}}" method="post" class="d-inline" >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                            </form>
+                                        <a class="btn btn-danger" href="{{route('audits.destroy',$audit->id)}}" data-confirm-delete="true"><i class="fas fa-trash-alt"></i></a>
                                     </td>        
                                     @endcan
                                 </tr>

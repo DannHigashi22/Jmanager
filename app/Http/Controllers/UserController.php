@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+
+use Illuminate\Auth\Events\Registered;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -12,6 +15,7 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('permission:show-user|create-user|edit-user|delete-user',['only'=>['index']]);
@@ -28,6 +32,9 @@ class UserController extends Controller
     public function index()
     {
         $users=User::paginate(10);
+        $title = 'Borrar Usuario!';
+        $text = "estas seguro de borrar?";
+        confirmDelete($title, $text);
         return view('user.index',compact('users'));
     }
 
@@ -55,15 +62,17 @@ class UserController extends Controller
             'surname'=>['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'roles'=>['required']
+            'roles'=>['required','exists:roles,name'],
+            'status'=>['required','boolean']
         ]);
 
         $input=$request->all();
-        $input=Arr::add($input,'status',1);
+        $input=Arr::add($input,'status',0);
         $input['password']=Hash::make($input['password']);
         
         $user=User::create($input);
         $user->assignRole($request->input('roles'));
+        event(new Registered($user));
         notify()->success('Usuario creado correctamente⚡️','Creado');
         return redirect()->route('users.index');
     }

@@ -27,6 +27,9 @@ class RolController extends Controller
     public function index()
     {
         $roles=Role::paginate(10);
+        $title = 'Borrar Rol!';
+        $text = "estas seguro de borrar?";
+        confirmDelete($title, $text);
         return view('roles.index',compact('roles'));
     }
 

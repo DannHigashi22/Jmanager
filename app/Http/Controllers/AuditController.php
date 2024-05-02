@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\AuditExport;
 use App\Imports\AuditImport;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Support\Arr;
 use Carbon\Carbon;
@@ -61,7 +62,11 @@ class AuditController extends Controller
         })->get();//->paginate(10);
 
         $users=User::all();//Usuarios totales
-        //$audits=Audit::orderBy('created_at','desc')->paginate(10);
+        
+        $title = 'Borrar Auditoria!';
+        $text = "estas seguro de borrar?";
+        confirmDelete($title, $text);
+
         return view('audit.index',compact('audits','users'));
         
     }

@@ -68,6 +68,19 @@
                             @enderror
                           </div>
                           <div class="mb-3">
+                            <label class="form-label" for="roles">Estado</label>
+                            <select class="custom-select form-control-border @error('status') is-invalid @enderror" name="status">
+                                <option value="" >Selecionar estado</option>
+                                    <option value="1" {{old('status') == 1 ?'selected':''}}>Activo</option>
+                                    <option value="0" {{old('status') == 0 ?'selected':''}} >Desactivo</option>
+                            </select>
+                            @error('status')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                          </div>
+                          <div class="mb-3">
                             <label class="form-label" for="password">Contraseña</label>
                             <div class="">
                               <input type="password" id="password" class="form-control form-control-border @error('password') is-invalid @enderror" name="password" placeholder="********" aria-describedby="password"/>

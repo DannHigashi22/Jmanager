@@ -22,6 +22,11 @@ class ErrorController extends Controller
     public function index()
     {
         $errors=Error::paginate(10);
+
+        $title ='Borrar Tipo error!';
+        $text = "estas seguro de borrar?";
+        confirmDelete($title, $text);
+
         return view('error.index',compact('errors'));
     }
 
@@ -61,7 +66,7 @@ class ErrorController extends Controller
      */
     public function show($id)
     {
-        //
+        return back();
     }
 
     /**

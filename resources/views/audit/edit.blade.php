@@ -40,10 +40,10 @@
                           <div class="mb-4">
                             <label for="name" class="form-label">2. Tipo de entrega</label>
                             <div class="form-check">
-                                <input class="form-check-input @error('type') is-invalid @enderror" type="radio" name="type" id="type1" value="Despacho" {{$audit->type =='despacho' ? 'checked':''}}>
+                                <input class="form-check-input @error('type') is-invalid @enderror" type="radio" name="type" id="type1" value="Despacho" {{$audit->type =='Despacho' ? 'checked':''}}>
                                 <label class="form-check-label mb-2" for="type1">Despacho</label> <br>
                            
-                                <input class="form-check-input @error('type') is-invalid @enderror" type="radio" name="type" id="type2" value="Click auto" {{$audit->type =='click auto' ? 'checked':''}}>
+                                <input class="form-check-input @error('type') is-invalid @enderror" type="radio" name="type" id="type2" value="Click auto" {{$audit->type =='Click auto' ? 'checked':''}}>
                                 <label class="form-check-label" for="type2">Click Auto</label>
                                 @error('type')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                                 </span>
                             @enderror
                           </div>
-                          <button class="btn btn-primary">Agregar Nuevo</button>
+                          <button class="btn btn-primary">Guardar cambios</button>
                         </form>
                     </div>
                 </div>

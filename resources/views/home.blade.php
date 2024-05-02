@@ -31,7 +31,7 @@
 
 
 <section class="content">
-    <div class="container-fluid">
+    <div class="container-xl">
         <!--info boxes -->
         <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="card">
+                <div class="card card-success">
                     <div class="card-header">
                         <h5 class="card-title">Tipo error - Mala practica</h5>
                         <div class="card-tools">
@@ -178,7 +178,7 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <div class="card card-cyan">
+                <div class="card card-success">
                     <div class="card-header">
                         <h3 class="card-title">Auditorias por Usuario</h3>
                         <div class="card-tools">
@@ -210,7 +210,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card card-success">
                     <div class="card-header">
                         <h3 class="card-title">Tipo de Entrega </h3>
                         <div class="card-tools">

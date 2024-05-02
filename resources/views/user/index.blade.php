@@ -60,11 +60,7 @@
                                             <a class="btn btn-primary" href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a>
                                         @endcan
                                         @can('delete-rol')
-                                            <form action="{{route('users.destroy',$user->id)}}" method="post" class="d-inline" >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                            </form>
+                                            <a class="btn btn-danger" href="{{route('users.destroy',$user->id)}}"><i class="fas fa-trash-alt"></i></a>
                                         </td>    
                                         @endcan
                                 </tr>

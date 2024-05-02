@@ -82,12 +82,13 @@
         reserved.
     </footer>
 </div>
-@yield('third_party_scripts')
 
-<script src="{{ mix('js/app.js') }}"></script>
-
+@include('sweetalert::alert')
 @include('notify::components.notify')
 
+
+@yield('third_party_scripts')
+<script src="{{ mix('js/app.js') }}"></script>
 @notifyJs
 
 @yield('p_scripts')

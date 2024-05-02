@@ -43,14 +43,10 @@
                                     <td> {{$rol->created_at}}</td>
                                         @can('edit-rol')
                                         <td>
-                                            <a class="btn btn-primary " href="{{route('roles.edit',$rol->id)}}"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-primary " href="{{route('roles.edit',$rol->id)}}" ><i class="fas fa-edit"></i></a>
                                         @endcan
                                         @can('delete-rol')
-                                            <form action="{{route('roles.destroy',$rol->id)}}" method="post" class="d-inline" >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button  class="btn btn-danger" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                            </form>
+                                        <a class="btn btn-danger" href="{{route('roles.destroy',$rol->id)}}" data-confirm-delete="true"><i class="fas fa-trash-alt"></i></a>
                                         </td>    
                                         @endcan
                                 </tr>

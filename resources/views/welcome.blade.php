@@ -60,7 +60,6 @@
     
         @include('notify::components.notify')
 
-        <x:notify-messages />
         @notifyJs        
 </body>
 </html>

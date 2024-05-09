@@ -23,6 +23,10 @@
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! admin-lte */ "./node_modules/admin-lte/dist/js/adminlte.min.js");
 $(function () {
@@ -62,6 +66,7 @@ $(function () {
         }
       }
     });
+    Chart.register(ChartDataLabels);
     var pieChartCanvas = $('#typeChart').get(0).getContext('2d');
     var pieData = {
       labels: Object.keys(analytics['chartType']),
@@ -70,8 +75,14 @@ $(function () {
         backgroundColor: ['#f56954', '#00a65a']
       }]
     };
-    var pieOptions = {
+    var pieOptions = _defineProperty({
       maintainAspectRatio: false,
+      plugins: {
+        // Change options for ALL labels of THIS CHART
+        datalabels: {
+          color: '#00a65a'
+        }
+      },
       legend: {
         display: true
       },
@@ -81,9 +92,8 @@ $(function () {
         fontStyle: 'bold',
         fontColor: '#000',
         fontFamily: '"Lucida Console", Monaco, monospace'
-      },
-      plugins: []
-    };
+      }
+    }, "plugins", []);
     var pieChart = new Chart(pieChartCanvas, {
       type: 'pie',
       data: pieData,

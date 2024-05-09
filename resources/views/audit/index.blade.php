@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(auth()->user()->getRoleNames()[0] == 'Super Administrador' |  auth()->user()->getRoleNames()[0] == 'Administrador' )
+                                @if(auth()->user()->getRoleNames()[0] !== 'Auditor')
                                 <div class="col col-md">
                                     <div class="form-group mb-1">
                                         <label>Colaborador:</label>
@@ -123,7 +123,7 @@
                                         @endforeach
                                     </td>
                                     <td>{{$audit->user->name.' '.$audit->user->surname}}</td>
-                                    <td>{{date_format($audit->created_at,'m/d/Y')}}</td>
+                                    <td>{{date_format($audit->created_at,'d/m/Y')}}</td>
                                     @can('edit-audit')
                                     <td>
                                         <a class="btn btn-primary" href="{{route('audits.edit',$audit->id)}}"><i class="fas fa-user-edit"></i></a>

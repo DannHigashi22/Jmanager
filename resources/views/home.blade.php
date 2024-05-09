@@ -10,6 +10,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"
     integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"></script>
 @endsection
 
 @section('content')
@@ -38,7 +40,7 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-blue elevation-1"><i class="fas fa-calendar-day"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Auditorias</span>
+                        <span class="info-box-text">Auditorias {{Request::get('dateRange') !== null ? '(Fecha)':'Hoy'}}</span>
                         <span class="info-box-number">{{$auditsDay}}</span>
                     </div>
                 </div>
@@ -47,7 +49,7 @@
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-info elevation-1"><i class="far fa-calendar-alt"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Auditorias del mes</span>
+                        <span class="info-box-text">Audit (Mes actual)</span>
                         <span class="info-box-number">{{$auditsMonth}}</span>
                     </div>
                 </div>
@@ -94,7 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(auth()->user()->getRoleNames()[0] == 'Super Administrador' |  auth()->user()->getRoleNames()[0] == 'Administrador' )
+                                @if(auth()->user()->getRoleNames()[0] !== 'Auditor')
                                 <div class="col col-md">
                                     <div class="form-group mb-1">
                                         <label>Colaborador:</label>

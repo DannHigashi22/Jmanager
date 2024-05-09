@@ -47,7 +47,10 @@ class HomeController extends Controller
 
         //data info cards
         $carbon=new Carbon();
-        $auditsDay=Audit::whereDate('created_at',$carbon->now()->format('Y-m-d'))->count();//auditorias de hoy 
+        $auditsDay=Audit::when($request->input('dateRange') != null , function ($q) use ($start,$end){
+            return $q->whereBetween('created_at',[$start,$end]);
+        })->count();
+        //auditorias de hoy 
         $auditsMonth=Audit::whereMonth('created_at',($carbon->now()->format('m')))->count();//auditorias del mes
         $audits=Audit::all()->count();//Auditorias totales
         $users=User::all();//Usuarios totales

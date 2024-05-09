@@ -99,12 +99,12 @@ $desktop-max-height: 1280px !default;
   }
 
   @include tablet{
-    height: 35vh;
+    height: 30vh;
     width: 100%;
   }
 
   @include landscape-tablet{
-    height: 50vh;
+    height: 35vh;
     width: 100%;
   }
 

@@ -23,6 +23,7 @@ $(function () {
       }
     });
 
+
     Chart.register({
       id: 'noData',
       afterDraw: function (chart) {
@@ -41,6 +42,7 @@ $(function () {
         }
       }
     });
+    Chart.register(ChartDataLabels);
 
     var pieChartCanvas = $('#typeChart').get(0).getContext('2d')
     var pieData = {
@@ -52,6 +54,12 @@ $(function () {
     }
     var pieOptions = {
       maintainAspectRatio: false,
+      plugins: {
+        // Change options for ALL labels of THIS CHART
+        datalabels: {
+          color: '#00a65a'
+        }
+      },
       legend: {
         display: true
       },

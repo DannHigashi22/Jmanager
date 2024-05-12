@@ -18,7 +18,7 @@ class ReportCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Envio de reporte audiotiras, final de dia ';
+    protected $description = 'Envio de reporte auditorias, final de dia ';
 
     /**
      * Create a new command instance.

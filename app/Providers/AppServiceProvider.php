@@ -35,13 +35,15 @@ class AppServiceProvider extends ServiceProvider
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
-                ->subject('Bienvenid@ a JManager - Verificacion de correo')
+                ->subject('Bienvenid@ a JManager - Creacion y Verificacion de correo')
                 ->success()
-                ->greeting("Hola, Bienvenid@ ".$notifiable->name.' '.$notifiable->surname)
-                ->line('Haga clic en el botón a continuación para verificar su dirección de correo')
+                ->greeting("Hola, Bienvenid@ ".$notifiable->name.' '.$notifiable->surname.' a Jmanager')
+                ->line('Se le ha otorgado acceso a la aplicacion. Haga clic en el botón a continuación para verificar su dirección de correo.')
+                ->line("Contraseña: 'nombre'+'apelido'(primera letra)+mes actual.")
                 ->action('Verificar correo', $url)
+                ->line("Recuerde Resetear contraseña para mayor seguridad")
                 ->line('Si no creó una cuenta, no se requiere ninguna otra acción.')
-                ->salutation("Saludos, Jmanager (DHSolutions)");
+                ->salutation("Saludos, Jmanager (DhSolutions)");
         });
     }
 }

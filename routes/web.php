@@ -29,7 +29,8 @@ Route::get('/', function () {
 })->name('/');
 
 
-Auth::routes();
+//Auth::routes();
+Auth::routes(['register' => false]);
 
 
 //verify
@@ -39,10 +40,9 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    \Auth::logout();
 
     smilify('Bienvenido! 🔥 ', 'Email verificado');
-    return redirect('/');
+    return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {

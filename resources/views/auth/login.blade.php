@@ -89,9 +89,9 @@
             <p class="mb-1">
                 <a href="{{ route('password.request') }}">Olvide contraseña</a>
             </p>
-            <p class="mb-0">
-                <a href="{{ route('register') }}" class="text-center">¿Todavía no tienes una cuenta? Regístrate</a>
-            </p>
+           <!-- <p class="mb-0">
+                <a href="" class="text-center">¿Todavía no tienes una cuenta? Regístrate</a>
+            </p>-->
         </div>
         <!-- /.login-card-body -->
     </div>

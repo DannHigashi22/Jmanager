@@ -49,7 +49,10 @@ $(function () {
       labels: Object.keys(analytics['chartType']),
       datasets: [{
         data: Object.values(analytics['chartType']),
-        backgroundColor: ['#f56954', '#00a65a']
+        backgroundColor: [
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(153, 102, 255, 0.2)',]
       }]
     }
     var pieOptions = {
@@ -98,8 +101,6 @@ $(function () {
     }
     var barOptions = {
       maintainAspectRatio: false,
-
-
     }
     var barChart = new Chart(barChartCanvas, {
       type: 'bar',

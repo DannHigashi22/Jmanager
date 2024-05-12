@@ -16,10 +16,10 @@ class CheckuserActive
      */
     public function handle(Request $request, Closure $next)
     {   
-        if(auth()->user()->status != 0)
-    { 
+        if(auth()->user()->status != 0){ 
         return $next($request); 
     } 
+        \Auth::logout();
         notify()->error('Usuario desactivado, consulta con administrador ','App');
         return redirect(route('login'))->withErrors(['email' => 'Ususario no activado, contactar al administrador']);
     }

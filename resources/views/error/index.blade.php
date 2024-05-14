@@ -33,7 +33,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Creado</th>
-                                @if(auth()->user()->can('edit-error') | auth()->user()->can('delete-error'))
+                                @if(auth()->user()->can('edit-error') || auth()->user()->can('delete-error'))
                                 <th>Acciones</th>
                                 @endif
                             </tr>

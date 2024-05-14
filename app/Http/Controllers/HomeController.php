@@ -63,7 +63,6 @@ class HomeController extends Controller
                 'audits'=> function ($query) use ($start,$end,$request,$user){
                     if ($user !== null) {
                         $query->where('user_id',$user);
-                        //dd($query);
                     }
                     if ($start !== null) {
                         $query->whereBetween('audits.created_at',[$start,$end]);

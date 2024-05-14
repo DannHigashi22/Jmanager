@@ -106,7 +106,7 @@
                                 <th>Error</th>
                                 <th>Auditor</th>
                                 <th>Creado</th>
-                                @if(auth()->user()->can('edit-audit') | auth()->user()->can('delete-audit'))
+                                @if(auth()->user()->can('edit-audit') || auth()->user()->can('delete-audit'))
                                 <th>Acciones</th>
                                 @endif
                             </tr>

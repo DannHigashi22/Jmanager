@@ -31,7 +31,7 @@
                             <tr>
                                 <th>Rol</th>
                                 <th>Creado</th>
-                                @if(auth()->user()->can('edit-rol') && auth()->user()->can('delete-rol'))
+                                @if(auth()->user()->can('edit-rol') || auth()->user()->can('delete-rol'))
                                 <th>Acciones</th>
                                 @endif
                             </tr>

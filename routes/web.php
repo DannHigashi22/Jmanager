@@ -28,8 +28,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('/');
 
-
-//Auth::routes();
 Auth::routes(['register' => false]);
 
 

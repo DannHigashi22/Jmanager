@@ -60,7 +60,7 @@
                                             <a class="btn btn-primary" href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a>
                                         @endcan
                                         @can('delete-user')
-                                            <a class="btn btn-danger" href="{{route('users.destroy',$user->id)}}"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="btn btn-danger" href="{{route('users.destroy',$user->id)}}" data-confirm-delete="true"><i class="fas fa-trash-alt"></i></a>
                                         </td>    
                                         @endcan
                                 </tr>

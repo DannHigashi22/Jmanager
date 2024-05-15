@@ -143,7 +143,7 @@ class AuditController extends Controller
     {
         $validate=$this->validate($request,[
             'order'=>['required',"unique:audits,order,$audit->id"],
-            'type'=>['required'],
+            'type'=>['required',"regex:(Despacho|Click auto)"],
             'error_type'=>['required','min:1'],
             'description'=>['required']
         ]);

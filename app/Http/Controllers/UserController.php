@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Auth\Events\Registered;
 
@@ -32,9 +34,11 @@ class UserController extends Controller
     public function index()
     {
         $users=User::paginate(10);
+
         $title = 'Borrar Usuario!';
         $text = "estas seguro de borrar?";
         confirmDelete($title, $text);
+        
         return view('user.index',compact('users'));
     }
 
@@ -62,7 +66,8 @@ class UserController extends Controller
             'surname'=>['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'roles'=>['required','exists:roles,name'],
+            'roles'=>['required','exists:roles,name',
+                Rule::when(Auth::user()->getRoleNames()[0] !== 'Super Administrador',  'not_regex:(Super Administrador)')],
             'status'=>['required','boolean']
         ]);
 
@@ -116,7 +121,8 @@ class UserController extends Controller
             'surname'=>['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', "unique:users,email,$id"],
             'password' => ['nullable','string', 'min:8', 'same:password_confirmation'],
-            'roles'=>['required','exists:roles,name'],
+            'roles'=>['required','exists:roles,name',
+            Rule::when(Auth::user()->getRoleNames()[0] !== 'Super Administrador',  'not_regex:(Super Administrador)')],
             'status'=>['required','boolean']
         ]);
         

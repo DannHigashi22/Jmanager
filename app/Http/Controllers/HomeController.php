@@ -50,7 +50,7 @@ class HomeController extends Controller
         $auditsDay=Audit::when($request->input('dateRange') != null , function ($q) use ($start,$end){
             return $q->whereBetween('created_at',[$start,$end]);
         },function($q) use ($carbon){
-            return $q->whereDay('created_at',($carbon->now()));
+            return $q->whereDate('created_at',($carbon->now()));
         })->count();
         //auditorias de hoy 
         $auditsMonth=Audit::whereMonth('created_at',($carbon->now()->format('m')))->count();//auditorias del mes

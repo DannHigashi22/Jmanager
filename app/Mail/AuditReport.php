@@ -38,6 +38,6 @@ class AuditReport extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.report');
+        return $this->subject('Reporte Pedidos J511')->view('emails.report');
     }
 }

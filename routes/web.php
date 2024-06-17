@@ -34,7 +34,7 @@ use Carbon\Carbon;
 |
 */
 
-/*Route::get('/report', function () {
+Route::get('/report', function () {
     $start =Carbon::now()->subDay()->startOfMonth();
     $end = Carbon::now()->subDay()->endOfDay();
 
@@ -59,7 +59,7 @@ use Carbon\Carbon;
     $chartType = Audit::selectRaw("type ,COUNT('type') as sumType")->groupBy('type')->whereBetween('created_at', [$start, $end])->orderBy('type')->pluck('sumType', 'type')->all(); 
 
     return view('emails.report', compact('chartErrors','chartUsers','chartType','auditsMonth','auditsDay'));
-})->name('report');*/
+})->name('report');
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,14 +72,12 @@ Auth::routes(['register' => false]);
 Route::get('/email/verify', function () {
     return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
     smilify('Bienvenido! 🔥 ', 'Email verificado');
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 

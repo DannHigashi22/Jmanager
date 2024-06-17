@@ -69,6 +69,7 @@ class ReportCommand extends Command
         $chartType = Audit::selectRaw("type ,COUNT('type') as sumType")->groupBy('type')->whereBetween('created_at', [$start, $end])->orderBy('type')->pluck('sumType', 'type')->all(); 
 
         Mail::to("dann.higashi@inacapmail.cl")->send(new AuditReport($chartErrors,$chartUsers,$chartType,$auditsMonth,$auditsDay));
+        Mail::to("dann.higashievangelista@jumbo.cl")->send(new AuditReport($chartErrors,$chartUsers,$chartType,$auditsMonth,$auditsDay));
 
         //usuarios a enviar correo
         $users=User::all();

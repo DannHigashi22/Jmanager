@@ -17,7 +17,7 @@ class AuditImport implements ToCollection, WithHeadingRow, WithBatchInserts, Wit
     public function collection(Collection $rows){   
         //$audit=Audit::where('shopper','=',null)->get();
         foreach ($rows as $row){
-            Audit::where('order',$row['nro_pedido'])->update([
+            Audit::where('order',$row['nro_pedido'])->where('shopper','=',null)->update([
                 'shopper'=> $row['shopper']
             ]);
         }

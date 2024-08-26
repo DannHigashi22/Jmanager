@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Error;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 
 //spatie
 use Spatie\Permission\Models\Permission;
@@ -30,6 +34,8 @@ class TablePermisions extends Seeder
             'show-rol','create-rol','edit-rol','delete-rol',
             //table user
             'show-user','create-user','edit-user','delete-user',
+            //table clients_csat
+            'show-csat','create-csat','edit-csat','delete-csat','import-csat','export-csat','order-csat',  
         ];
 
         foreach ($permisssions as $permi){
@@ -51,5 +57,21 @@ class TablePermisions extends Seeder
         foreach ($roles_type as $rol) {
             Role::create(['name'=>$rol]);
         }
+
+        //Permisos
+        $permission=Permission::get();
+        $role=Role::where('name','Super Administrador')->firstOrFail();
+        $role->syncPermissions($permisssions);
+
+        //SuperUsuario
+        $user=User::create([
+            'name'=>'Dann',
+            'surname'=>'Higashi',
+            'email'=>'dann.higashievangelista@jumbo.cl',
+            'password'=>Hash::make(123456789),
+            'status'=>1,
+        ]);
+        $user->assignRole('Super Administrador');
+        event(new Registered($user));
     }
 }

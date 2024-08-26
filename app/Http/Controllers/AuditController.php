@@ -26,7 +26,7 @@ class AuditController extends Controller
         $this->middleware('permission:edit-audit',['only'=>['edit','update']]);
         $this->middleware('permission:edelete-audit',['only'=>['destroy']]);
         $this->middleware('permission:importShpr-audit',['only'=>['importShoppers']]);
-        $this->middleware('permission:exportShpr-audit',['only'=>['exportShoppers']]);
+        $this->middleware('permission:exportShpr-audit',['only'=>['exportAudits']]);
     }
     /**
      * Display a listing of the resource.
@@ -44,12 +44,14 @@ class AuditController extends Controller
             $start=Carbon::createFromFormat('Y/m/d',$date[0])->startOfDay();
             $end=Carbon::createFromFormat('Y/m/d',empty($date[1])?$date[0]:$date[1])->endOfDay();   
         }
+        
         if(Auth::user()->getRoleNames()[0] == 'Auditor'){
             $user=Auth::user()->id;
         }elseif($request->input('user') !== null){
             $user=User::select('id')->where('email',$request->input('user'))->first();
             $user=$user ? $user->id:'';
         }
+
         $audits=Audit::when($user !== null , function ($q) use ($user){
             return $q->where('user_id',$user);
         })
@@ -59,16 +61,16 @@ class AuditController extends Controller
             return $q->where('type','=',$request->input('type'));
         },function($q){
             return $q->orderBy('created_at','desc');
-        })->get();//->paginate(10);
+        })->paginate(20)->withQueryString();
 
-        $users=User::all();//Usuarios totales
+        $users=User::orderBy('name')->get();//Usuarios totales
         
+        //confirm alert
         $title = 'Borrar Auditoria!';
         $text = "estas seguro de borrar?";
         confirmDelete($title, $text);
 
-        return view('audit.index',compact('audits','users'));
-        
+        return view('audit.index',compact('audits','users')); 
     }
 
     /**
@@ -115,7 +117,7 @@ class AuditController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->back();
     }
 
     /**

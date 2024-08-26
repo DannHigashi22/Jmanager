@@ -15,7 +15,7 @@ return [
 
     'css-files' => [
         public_path('css/app.css'),
-        public_path('css/all.css')
+        //public_path('css/all.css')
     ],
 
 ];

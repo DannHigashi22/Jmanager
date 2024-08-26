@@ -153,7 +153,6 @@ $(function () {
     })
   }
 
-
   //dataRange
   $('#filter-date').daterangepicker({
     autoUpdateInput: false,

@@ -41,22 +41,25 @@ class HomeController extends Controller
             $user=Auth::user()->id;
         }elseif($request->input('user') !== null){
             $user=User::select('id')->where('email',$request->input('user'))->first();
-            $user=$user ? $user->id:'';
+            $user=$user ? $user->id:null;
         }
+    //data info cards
 
-
-        //data info cards
+        //auditorias de hoy 
         $carbon=new Carbon();
-        $auditsDay=Audit::when($request->input('dateRange') != null , function ($q) use ($start,$end){
+        $auditsDay=Audit::when($user !== null , function ($q) use ($user){
+            return $q->where('user_id',$user);
+        })->when($request->input('dateRange') != null , function ($q) use ($start,$end){
             return $q->whereBetween('created_at',[$start,$end]);
         },function($q) use ($carbon){
             return $q->whereDate('created_at',($carbon->now()));
         })->count();
-        //auditorias de hoy 
+
+    
         $auditsMonth=Audit::whereMonth('created_at',($carbon->now()->format('m')))->count();//auditorias del mes
         $audits=Audit::all()->count();//Auditorias totales
-        $users=User::all();//Usuarios totales
-
+        $users=User::orderBy('name')->get();//Usuarios totales
+    //Chart    
         //chart error count
         $chartErrors=Error::when($request->input('dateRange') != null | $request->input('type') != null | $user !== null , function ($q) use ($start,$end,$request, $user){
             return $q->WithCount([
@@ -70,17 +73,19 @@ class HomeController extends Controller
                     if ($request->input('type') == 'Despacho' | $request->input('type') == 'Click auto') {
                         $query->where('type',$request->input('type'));
                     }else{$query=0;}
-
             }]);
         },function($q) use ($request){
             if (empty($request->input('dateRange')) && empty($request->input('type'))) {
                 return $q->orderBy('id','DESC')->withCount('audits');
             }
-        })->pluck('audits_count','type')->all();
+        })->having('audits_count', '>', 0)->pluck('audits_count','type')->all();
 
         //chart audits by user
         $chartUsers=User::selectRaw("CONCAT(name,' ',surname) as names")
-        ->when($request->input('dateRange') != null | $request->input('type') != null | $user !== null, function ($q) use ($start,$end,$request,$user){
+        ->when($user !== null, function ($q) use ($user) {
+            return $q->where('id', $user);
+        })
+        ->when($request->input('dateRange') != null || $request->input('type') != null || $user !== null, function ($q) use ($start,$end,$request,$user){
             return $q->WithCount(['audits'=> function ($query) use ($start,$end,$request,$user){
                     if ($start !== null) {
                         $query->whereBetween('created_at',[$start,$end]);   
@@ -96,7 +101,7 @@ class HomeController extends Controller
             if (empty($request->input('dateRange')) && empty($request->input('type')) &&  empty($user)) {
                 return $q->withCount('audits');
             }   
-        })->pluck('audits_count','names')->all();
+        })->having('audits_count', '>', 0)->pluck('audits_count','names')->all();
 
         //chart type
         $chartType=Audit::selectRaw("type ,COUNT('type') as sumType")->groupBy('type')

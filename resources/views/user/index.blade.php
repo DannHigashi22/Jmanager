@@ -36,6 +36,7 @@
                                 <th>Email</th>
                                 <th>Rol</th>
                                 <th>Estatus</th>
+                                <th>Verificado</th>
                                 @if(auth()->user()->can('edit-user') || auth()->user()->can('delete-user'))
                                 <th>Acciones</th>
                                 @endif
@@ -55,6 +56,7 @@
                                         @endempty
                                     </td>
                                     <td>{!! ($user->status == 1 ? '<span class="badge bg-success">Activo</span>' : '<span class="badge bg-danger">inactivo</span>')!!}</td>
+                                    <td>{!! ($user->email_verified_at ? '<span class="badge bg-success">Listo</span>' : '<span class="badge bg-danger">Pendiente</span>')!!}</td>
                                         @can('edit-user')
                                         <td>
                                             <a class="btn btn-primary" href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a>

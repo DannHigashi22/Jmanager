@@ -20,6 +20,13 @@
         <p>Error Tipo</p></a>
     </li>
 @endif
+@if(auth()->user()->can('show-csat') )
+    <li class="nav-item">
+        <a href="/csat" class="nav-link {{(Request::path() == 'cliCsat'|| Request::is('cliCsat*')) ? 'active' : ''}} ">
+        <i class=" nav-icon fas fa-poll-h"></i>
+        <p>Csat Clientes</p></a>
+    </li>
+@endif
 @if(auth()->user()->can('show-user'))
     <li class="nav-item">
         <a href="/users" class="nav-link {{(Request::path() == 'users' || Request::is('users*')) ? 'active' : ''}} ">

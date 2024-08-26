@@ -6,6 +6,7 @@
                 <th>Tipo</th>
                 <th>Shopper</th>
                 <th>Error</th>
+                <th>Descripcion</th>
                 <th>Auditor</th>
                 <th>Creado</th>
             </tr>
@@ -22,6 +23,7 @@
                            {{$error->type}};
                         @endforeach
                     </td>
+                    <td>{{$audit->description}}</td>
                     <td>{{$audit->user->name.' '.$audit->user->surname}}</td>
                     <td>{{date_format($audit->created_at,'d/m/Y')}} </td>
                 </tr>

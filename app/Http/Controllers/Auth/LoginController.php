@@ -47,7 +47,7 @@ class LoginController extends Controller
             //\Auth::logout();
             
             notify()->error('Usuario desactivado, consulta con administrador ','App');
-            return redirect(route('login'))->withErrors(['email' => 'Ususario no activado, contactar al administrador']);
+            return redirect(route('login'))->withErrors(['email' => 'Usuario no activado, contactar al administrador']);
         }
     }
 

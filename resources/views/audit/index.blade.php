@@ -137,7 +137,7 @@
                         </tbody>
                         </table>
                     <div class="pagination d-flex justify-content-center">
-                        {{--!! $audits->links() ---}}
+                        {{ $audits->links() }}
                     </div>
                     </div>
                 </div>
